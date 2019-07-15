@@ -1,0 +1,7 @@
+house
+car
+bus
+tram
+plane
+park
+tree

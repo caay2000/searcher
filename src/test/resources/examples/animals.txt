@@ -1,0 +1,8 @@
+cat
+dog cat
+cow fly fly pig bug
+bird
+bull
+mosquito
+cat
+dog
