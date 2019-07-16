@@ -1,6 +1,6 @@
-import caay2000.github.com.searcher.SearcherApplication;
-import caay2000.github.com.searcher.io.SystemConsole;
-import caay2000.github.com.searcher.io.SystemFileReader;
+import com.github.caay2000.searcher.SearcherApplication;
+import com.github.caay2000.searcher.io.SystemConsole;
+import com.github.caay2000.searcher.io.SystemFileReader;
 
 public class Searcher {
 
