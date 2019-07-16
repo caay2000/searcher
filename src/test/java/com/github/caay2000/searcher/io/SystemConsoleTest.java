@@ -26,7 +26,7 @@ public class SystemConsoleTest {
 
         testee.writeln("string");
 
-        Assert.assertEquals("string\r\n", outputStream.getWrites());
+        Assert.assertEquals("string"+System.lineSeparator(), outputStream.getWrites());
     }
 
     @Test
