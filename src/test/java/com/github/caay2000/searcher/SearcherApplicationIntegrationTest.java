@@ -16,7 +16,6 @@ public class SearcherApplicationIntegrationTest {
 
         searcherApplication.execute(new String[]{getFilePath("examples")});
 
-        Assert.assertEquals(2, console.getWrites().size());
         Assert.assertTrue(console.getWrites().get(0).contains("files read in directory"));
     }
 
@@ -28,8 +27,7 @@ public class SearcherApplicationIntegrationTest {
 
         searcherApplication.execute(new String[]{getFilePath("examples")});
 
-        Assert.assertEquals(4, console.getWrites().size());
-        Assert.assertEquals("animals.txt : 100%", console.getWrites().get(2));
+        Assert.assertTrue(console.getWrites().contains("animals.txt : 100%"));
     }
 
     @Test
@@ -40,9 +38,8 @@ public class SearcherApplicationIntegrationTest {
 
         searcherApplication.execute(new String[]{getFilePath("examples")});
 
-        Assert.assertEquals(5, console.getWrites().size());
-        Assert.assertEquals("vehicles.txt : 100%", console.getWrites().get(2));
-        Assert.assertEquals("things.txt : 50%", console.getWrites().get(3));
+        Assert.assertTrue(console.getWrites().contains("vehicles.txt : 100%"));
+        Assert.assertTrue(console.getWrites().contains("things.txt : 50%"));
     }
 
     @Test
@@ -53,19 +50,13 @@ public class SearcherApplicationIntegrationTest {
 
         searcherApplication.execute(new String[]{getFilePath("examples")});
 
-        Assert.assertEquals(4, console.getWrites().size());
-        Assert.assertEquals("no matches found", console.getWrites().get(2));
+        Assert.assertTrue(console.getWrites().contains("no matches found"));
     }
 
     private String getFilePath(String file) {
 
         try {
-
-            String path = this.getClass().getClassLoader().getResource(file).getFile();
-
-            return solveWindowsIssue(path);
-//            return "D:/kiwibcn/workspace/searcher/target/test-classes/" + file;
-            //return "C:/Users/acasanovas/workspace/kiwibcn/searcher/target/test-classes/" + file;
+            return solveWindowsIssue(this.getClass().getClassLoader().getResource(file).getFile());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
