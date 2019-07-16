@@ -1,6 +1,5 @@
 package com.github.caay2000.searcher.utils;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -18,7 +17,7 @@ public class InputStreamStub extends InputStream {
     }
 
     @Override
-    public int read() throws IOException {
+    public int read() {
 
         Byte aByte = byteQueue.poll();
         if (aByte == null) {

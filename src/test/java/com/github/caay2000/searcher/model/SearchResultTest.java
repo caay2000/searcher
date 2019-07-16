@@ -2,7 +2,6 @@ package com.github.caay2000.searcher.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ public class SearchResultTest {
         testee.addResult("filename", 100);
 
         Assert.assertEquals("filename", getResultsAsSortedList(testee).get(0).getFilename());
-        Assert.assertEquals(new Integer(100), getResultsAsSortedList(testee).get(0).getValue());
+        Assert.assertEquals(Integer.valueOf(100), getResultsAsSortedList(testee).get(0).getValue());
     }
 
     @Test

@@ -2,12 +2,11 @@ package com.github.caay2000.searcher.processor;
 
 import java.util.Arrays;
 import java.util.HashSet;
-
+import org.junit.Assert;
+import org.junit.Test;
 import com.github.caay2000.searcher.model.Document;
 import com.github.caay2000.searcher.model.DocumentLibrary;
 import com.github.caay2000.searcher.model.SearchResult;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class SimpleSearchProcessorTest {
 
@@ -44,7 +43,7 @@ public class SimpleSearchProcessorTest {
         SearchResult result = testee.search(new HashSet<>(Arrays.asList("something")), library);
 
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals(new Integer(100), getResultItemByFilename(result, "filename").getValue());
+        Assert.assertEquals(Integer.valueOf(100), getResultItemByFilename(result, "filename").getValue());
     }
 
     @Test
@@ -57,7 +56,7 @@ public class SimpleSearchProcessorTest {
         SearchResult result = testee.search(new HashSet<>(Arrays.asList("something", "another")), library);
 
         Assert.assertEquals(1, result.size());
-        Assert.assertEquals(new Integer(50), getResultItemByFilename(result, "filename").getValue());
+        Assert.assertEquals(Integer.valueOf(50), getResultItemByFilename(result, "filename").getValue());
     }
 
     @Test
@@ -72,13 +71,13 @@ public class SimpleSearchProcessorTest {
         SearchResult result = testee.search(new HashSet<>(Arrays.asList("something", "another")), library);
 
         Assert.assertEquals(2, result.size());
-        Assert.assertEquals(new Integer(50), getResultItemByFilename(result, "something").getValue());
-        Assert.assertEquals(new Integer(100), getResultItemByFilename(result, "another").getValue());
+        Assert.assertEquals(Integer.valueOf(50), getResultItemByFilename(result, "something").getValue());
+        Assert.assertEquals(Integer.valueOf(100), getResultItemByFilename(result, "another").getValue());
     }
 
     private SearchResult.ResultItem getResultItemByFilename(SearchResult result, String filename) {
         return result.getResult().stream()
-                     .filter(e -> e.getFilename().equals(filename))
-                     .findFirst().orElseThrow(() -> new RuntimeException("not found"));
+                .filter(e -> e.getFilename().equals(filename))
+                .findFirst().orElseThrow(() -> new RuntimeException("not found"));
     }
 }

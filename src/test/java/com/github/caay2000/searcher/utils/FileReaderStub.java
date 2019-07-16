@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Stream;
-
 import com.github.caay2000.searcher.io.FileReader;
 
 public class FileReaderStub implements FileReader {

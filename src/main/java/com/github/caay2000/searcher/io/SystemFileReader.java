@@ -7,7 +7,6 @@ import java.nio.file.Paths;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import com.github.caay2000.searcher.model.ApplicationException;
 
 public class SystemFileReader implements FileReader {
@@ -20,8 +19,7 @@ public class SystemFileReader implements FileReader {
                     .filter(file -> file.toFile().isFile())
                     .filter(Files::isReadable)
                     .collect(Collectors.toSet());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new ApplicationException(String.format("error reading file %s", directory));
         }
     }
@@ -31,8 +29,7 @@ public class SystemFileReader implements FileReader {
 
         try {
             return Files.lines(path);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new ApplicationException(String.format("error reading file %s", path.getFileName().toString()));
         }
     }

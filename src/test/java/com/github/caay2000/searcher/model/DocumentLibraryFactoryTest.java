@@ -6,11 +6,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
-
-import com.github.caay2000.searcher.io.FileReader;
-import com.github.caay2000.searcher.utils.FileReaderStub;
 import org.junit.Assert;
 import org.junit.Test;
+import com.github.caay2000.searcher.io.FileReader;
+import com.github.caay2000.searcher.utils.FileReaderStub;
 
 public class DocumentLibraryFactoryTest {
 
@@ -122,8 +121,8 @@ public class DocumentLibraryFactoryTest {
 
     private long countWords(DocumentLibrary library, String anotherFilename) {
         return library.getDocuments().stream()
-                      .filter(e -> e.getFilename().equals(anotherFilename))
-                      .flatMap(e -> e.getWords().stream())
-                      .count();
+                .filter(e -> e.getFilename().equals(anotherFilename))
+                .flatMap(e -> e.getWords().stream())
+                .count();
     }
 }

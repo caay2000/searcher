@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 import com.github.caay2000.searcher.io.FileReader;
 
 public class DocumentLibraryFactory {
@@ -25,8 +24,8 @@ public class DocumentLibraryFactory {
         DocumentLibrary library = new DocumentLibrary();
         for (Path file : fileReader.readAllFiles(directory)) {
             Set<String> words = fileReader.getFileLines(file)
-                                          .flatMap(DocumentLibraryFactory::splitByWord)
-                                          .collect(Collectors.toSet());
+                    .flatMap(DocumentLibraryFactory::splitByWord)
+                    .collect(Collectors.toSet());
             if (!words.isEmpty()) {
                 String fileName = file.getFileName().toString();
                 library.addDocument(new Document(fileName, words));

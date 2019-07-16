@@ -1,8 +1,11 @@
 package com.github.caay2000.searcher.io;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import com.github.caay2000.searcher.model.ApplicationException;
-
-import java.io.*;
 
 public class SystemConsole implements Console {
 

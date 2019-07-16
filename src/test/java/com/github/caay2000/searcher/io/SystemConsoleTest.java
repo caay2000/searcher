@@ -1,9 +1,9 @@
 package com.github.caay2000.searcher.io;
 
-import com.github.caay2000.searcher.utils.InputStreamStub;
-import com.github.caay2000.searcher.utils.OutputStreamSpy;
 import org.junit.Assert;
 import org.junit.Test;
+import com.github.caay2000.searcher.utils.InputStreamStub;
+import com.github.caay2000.searcher.utils.OutputStreamSpy;
 
 public class SystemConsoleTest {
 
@@ -26,7 +26,7 @@ public class SystemConsoleTest {
 
         testee.writeln("string");
 
-        Assert.assertEquals("string"+System.lineSeparator(), outputStream.getWrites());
+        Assert.assertEquals("string" + System.lineSeparator(), outputStream.getWrites());
     }
 
     @Test
@@ -51,5 +51,4 @@ public class SystemConsoleTest {
         Assert.assertEquals(ConsoleOperation.Operation.SEARCH, operation.getOperation());
         Assert.assertTrue(operation.getValue().contains("example"));
     }
-
 }

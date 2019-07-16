@@ -30,7 +30,7 @@ public class SearchResult {
         private final String filename;
         private final Integer value;
 
-        public ResultItem(String filename, Integer value) {
+        private ResultItem(String filename, Integer value) {
             this.filename = filename;
             this.value = value;
         }

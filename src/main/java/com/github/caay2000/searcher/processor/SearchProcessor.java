@@ -1,7 +1,6 @@
 package com.github.caay2000.searcher.processor;
 
 import java.util.Set;
-
 import com.github.caay2000.searcher.model.DocumentLibrary;
 import com.github.caay2000.searcher.model.SearchResult;
 

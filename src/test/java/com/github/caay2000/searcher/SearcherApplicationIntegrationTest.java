@@ -1,10 +1,10 @@
 package com.github.caay2000.searcher;
 
+import org.junit.Assert;
+import org.junit.Test;
 import com.github.caay2000.searcher.io.ConsoleOperation;
 import com.github.caay2000.searcher.io.SystemFileReader;
 import com.github.caay2000.searcher.utils.ConsoleSpy;
-import org.junit.Assert;
-import org.junit.Test;
 
 public class SearcherApplicationIntegrationTest {
 
@@ -14,7 +14,7 @@ public class SearcherApplicationIntegrationTest {
         ConsoleSpy console = new ConsoleSpy(ConsoleOperation.aQuitOperation());
         SearcherApplication searcherApplication = new SearcherApplication(new SystemFileReader(), console);
 
-        searcherApplication.execute(new String[]{getFilePath("examples")});
+        searcherApplication.execute(new String[] {getFilePath("examples")});
 
         Assert.assertTrue(console.getWrites().get(0).contains("files read in directory"));
     }
@@ -25,7 +25,7 @@ public class SearcherApplicationIntegrationTest {
         ConsoleSpy console = new ConsoleSpy(ConsoleOperation.aSearchOperation("dog"), ConsoleOperation.aQuitOperation());
         SearcherApplication searcherApplication = new SearcherApplication(new SystemFileReader(), console);
 
-        searcherApplication.execute(new String[]{getFilePath("examples")});
+        searcherApplication.execute(new String[] {getFilePath("examples")});
 
         Assert.assertTrue(console.getWrites().contains("animals.txt : 100%"));
     }
@@ -36,7 +36,7 @@ public class SearcherApplicationIntegrationTest {
         ConsoleSpy console = new ConsoleSpy(ConsoleOperation.aSearchOperation("plane skate"), ConsoleOperation.aQuitOperation());
         SearcherApplication searcherApplication = new SearcherApplication(new SystemFileReader(), console);
 
-        searcherApplication.execute(new String[]{getFilePath("examples")});
+        searcherApplication.execute(new String[] {getFilePath("examples")});
 
         Assert.assertTrue(console.getWrites().contains("vehicles.txt : 100%"));
         Assert.assertTrue(console.getWrites().contains("things.txt : 50%"));
@@ -48,7 +48,7 @@ public class SearcherApplicationIntegrationTest {
         ConsoleSpy console = new ConsoleSpy(ConsoleOperation.aSearchOperation("notFoundWord"), ConsoleOperation.aQuitOperation());
         SearcherApplication searcherApplication = new SearcherApplication(new SystemFileReader(), console);
 
-        searcherApplication.execute(new String[]{getFilePath("examples")});
+        searcherApplication.execute(new String[] {getFilePath("examples")});
 
         Assert.assertTrue(console.getWrites().contains("no matches found"));
     }
