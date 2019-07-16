@@ -1,0 +1,8 @@
+find
+search
+eat
+drive
+sink
+hit
+go
+drink

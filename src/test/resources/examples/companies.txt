@@ -1,0 +1,10 @@
+google
+yahoo
+microsoft
+merkle
+isdin
+coca-cola
+fanta
+amazon
+heroku
+tmb

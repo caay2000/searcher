@@ -1,0 +1,9 @@
+bus
+car
+ship
+plane
+helicopter
+bicycle
+skate
+motorcycle
+sidecar
