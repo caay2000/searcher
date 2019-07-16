@@ -4,5 +4,7 @@ public interface Console {
 
     void write(String string);
 
+    void writeln(String string);
+
     ConsoleOperation read();
 }

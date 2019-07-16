@@ -1,33 +1,30 @@
 package com.github.caay2000.searcher;
 
-import java.util.HashSet;
-
 import com.github.caay2000.searcher.io.ConsoleOperation;
-import com.github.caay2000.searcher.model.ApplicationException;
 import com.github.caay2000.searcher.utils.ConsoleSpy;
 import com.github.caay2000.searcher.utils.FileReaderStub;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class SearcherApplicationTest {
 
-    @Rule
-    public final ExpectedException expectedException = ExpectedException.none();
-
     @Test
     public void invalidInputThrowsException() {
-
-        expectedException.expect(ApplicationException.class);
-        expectedException.expectMessage("invalid number of params");
 
         ConsoleSpy consoleSpy = new ConsoleSpy();
         SearcherApplication testee = new SearcherApplication(null, consoleSpy);
 
         testee.execute(new String[]{});
 
-        Assert.assertEquals(1, consoleSpy.getWrites().size());
+        Assert.assertTrue(consoleSpy.getWrites().contains("ERROR: invalid number of params"));
     }
 
     @Test
@@ -36,17 +33,11 @@ public class SearcherApplicationTest {
         ConsoleSpy consoleSpy = new ConsoleSpy();
         SearcherApplication testee = new SearcherApplication(null, consoleSpy);
 
-        try {
-            testee.execute(new String[]{});
-        }
-        catch (ApplicationException e) {
-            Assert.assertEquals(5, consoleSpy.getWrites().size());
-            Assert.assertEquals("SEARCHER for Adevinta", consoleSpy.getWrites().get(0));
-            Assert.assertEquals("how to run the program:", consoleSpy.getWrites().get(1));
-            Assert.assertEquals("java -cp searcher [path_to_your_directory]", consoleSpy.getWrites().get(2));
-            Assert.assertEquals("", consoleSpy.getWrites().get(3));
-            Assert.assertEquals("Albert Casanovas(caay2000@gmail.com)", consoleSpy.getWrites().get(4));
-        }
+        testee.execute(new String[]{});
+        Assert.assertTrue(consoleSpy.getWrites().contains("SEARCHER for Adevinta"));
+        Assert.assertTrue(consoleSpy.getWrites().contains("how to run the program:"));
+        Assert.assertTrue(consoleSpy.getWrites().contains("java -cp searcher.jar Searcher [path_to_your_directory]"));
+        Assert.assertTrue(consoleSpy.getWrites().contains("Albert Casanovas(caay2000@gmail.com)"));
     }
 
     @Test
@@ -58,20 +49,48 @@ public class SearcherApplicationTest {
 
         testee.execute(new String[]{"example"});
 
-        Assert.assertEquals(1, consoleSpy.getWrites().size());
+        Assert.assertEquals(2, consoleSpy.getWrites().size());
     }
 
     @Test
     public void searchAndQuit() {
 
         ConsoleSpy consoleSpy = new ConsoleSpy(ConsoleOperation.aSearchOperation("search"),
-                                               ConsoleOperation.aQuitOperation());
+                ConsoleOperation.aQuitOperation());
         FileReaderStub fileReaderStub = new FileReaderStub(new HashSet<>());
         SearcherApplication testee = new SearcherApplication(fileReaderStub, consoleSpy);
 
         testee.execute(new String[]{"example"});
 
-        Assert.assertEquals(2, consoleSpy.getWrites().size());
-        Assert.assertEquals("no matches found", consoleSpy.getWrites().get(1));
+        Assert.assertTrue(consoleSpy.getWrites().contains("no matches found"));
     }
+
+    @Test
+    public void searchReturnsOnly10Elements() {
+
+        ConsoleSpy consoleSpy = new ConsoleSpy(ConsoleOperation.aSearchOperation("search"),
+                ConsoleOperation.aQuitOperation());
+        FileReaderStub fileReaderStub = new FileReaderStub(createPaths(15), createLines(15, "search"));
+        SearcherApplication testee = new SearcherApplication(fileReaderStub, consoleSpy);
+
+        testee.execute(new String[]{"example"});
+
+        Assert.assertEquals(13, consoleSpy.getWrites().size());
+    }
+
+    private Set<Path> createPaths(int number) {
+        return IntStream.range(1, number + 1)
+                .mapToObj(e -> new File(String.valueOf(e)).toPath())
+                .collect(Collectors.toSet());
+    }
+
+    private Stream<String>[] createLines(int number, String value) {
+
+
+        return (Stream<String>[]) IntStream.range(0, number)
+                .mapToObj(e -> Stream.of(value))
+                .collect(Collectors.toList()).toArray(new Stream[0]);
+    }
+
+
 }

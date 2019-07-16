@@ -25,6 +25,11 @@ public class ConsoleSpy implements Console {
     }
 
     @Override
+    public void writeln(String value) {
+        this.writes.add(value);
+    }
+
+    @Override
     public ConsoleOperation read() {
         return consoleOperations.poll();
     }
