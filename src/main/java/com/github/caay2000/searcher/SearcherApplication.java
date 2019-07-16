@@ -42,9 +42,14 @@ public class SearcherApplication {
     }
 
     private void printResult(SearchResult searchResult) {
-        searchResult.getResult().stream()
-                    .limit(10)
-                    .forEachOrdered(e -> console.write(String.format("%s : %d%%", e.getFilename(), e.getValue())));
+        if (searchResult.getResult().isEmpty()) {
+            console.write("no matches found");
+        }
+        else {
+            searchResult.getResult().stream()
+                        .limit(10)
+                        .forEachOrdered(e -> console.write(String.format("%s : %d%%", e.getFilename(), e.getValue())));
+        }
     }
 
     private void validateInput(String[] input) {

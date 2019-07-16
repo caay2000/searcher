@@ -1,6 +1,5 @@
 package com.github.caay2000.searcher.model;
 
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -21,7 +20,9 @@ public class SearchResult {
     }
 
     public void addResult(String filename, Integer value) {
-        this.result.add(new ResultItem(filename, value));
+        if (value > 0) {
+            this.result.add(new ResultItem(filename, value));
+        }
     }
 
     public class ResultItem implements Comparable<ResultItem> {
@@ -49,24 +50,6 @@ public class SearchResult {
                 compareTo = o.filename.compareTo(this.filename);
             }
             return compareTo;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(filename, value);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) {
-                return true;
-            }
-            if (o == null || getClass() != o.getClass()) {
-                return false;
-            }
-            ResultItem that = (ResultItem) o;
-            return Objects.equals(filename, that.filename) &&
-                   Objects.equals(value, that.value);
         }
     }
 }

@@ -57,6 +57,8 @@ public class SearcherApplicationTest {
         SearcherApplication testee = new SearcherApplication(fileReaderStub, consoleSpy);
 
         testee.execute(new String[]{"example"});
+
+        Assert.assertEquals(1, consoleSpy.getWrites().size());
     }
 
     @Test
@@ -68,5 +70,8 @@ public class SearcherApplicationTest {
         SearcherApplication testee = new SearcherApplication(fileReaderStub, consoleSpy);
 
         testee.execute(new String[]{"example"});
+
+        Assert.assertEquals(2, consoleSpy.getWrites().size());
+        Assert.assertEquals("no matches found", consoleSpy.getWrites().get(1));
     }
 }

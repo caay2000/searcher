@@ -28,9 +28,8 @@ public class SearcherApplicationIntegrationTest {
 
         searcherApplication.execute(new String[]{getFilePath("examples")});
 
-        Assert.assertEquals(7, console.getWrites().size());
+        Assert.assertEquals(2, console.getWrites().size());
         Assert.assertEquals("animals.txt : 100%", console.getWrites().get(1));
-        Assert.assertEquals("companies.txt : 0%", console.getWrites().get(2));
     }
 
     @Test
@@ -41,13 +40,21 @@ public class SearcherApplicationIntegrationTest {
 
         searcherApplication.execute(new String[]{getFilePath("examples")});
 
-        Assert.assertEquals(7, console.getWrites().size());
+        Assert.assertEquals(3, console.getWrites().size());
         Assert.assertEquals("vehicles.txt : 100%", console.getWrites().get(1));
         Assert.assertEquals("things.txt : 50%", console.getWrites().get(2));
-        Assert.assertEquals("animals.txt : 0%", console.getWrites().get(3));
-        Assert.assertEquals("companies.txt : 0%", console.getWrites().get(4));
-        Assert.assertEquals("names.txt : 0%", console.getWrites().get(5));
-        Assert.assertEquals("verbs.txt : 0%", console.getWrites().get(6));
+    }
+
+    @Test
+    public void notFound() {
+
+        ConsoleSpy console = new ConsoleSpy(ConsoleOperation.aSearchOperation("notFoundWord"), ConsoleOperation.aQuitOperation());
+        SearcherApplication searcherApplication = new SearcherApplication(new SystemFileReader(), console);
+
+        searcherApplication.execute(new String[]{getFilePath("examples")});
+
+        Assert.assertEquals(2, console.getWrites().size());
+        Assert.assertEquals("no matches found", console.getWrites().get(1));
     }
 
     private String getFilePath(String file) {
