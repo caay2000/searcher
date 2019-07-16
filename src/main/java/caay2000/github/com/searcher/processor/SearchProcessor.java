@@ -1,9 +1,9 @@
 package caay2000.github.com.searcher.processor;
 
+import java.util.Set;
+
 import caay2000.github.com.searcher.model.DocumentLibrary;
 import caay2000.github.com.searcher.model.SearchResult;
-
-import java.util.Set;
 
 public interface SearchProcessor {
 

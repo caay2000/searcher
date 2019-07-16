@@ -19,5 +19,4 @@ public class Document {
     public Set<String> getWords() {
         return words;
     }
-
 }

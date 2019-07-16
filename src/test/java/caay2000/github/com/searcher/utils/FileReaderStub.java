@@ -1,7 +1,5 @@
 package caay2000.github.com.searcher.utils;
 
-import caay2000.github.com.searcher.io.FileReader;
-
 import java.nio.file.Path;
 import java.util.ArrayDeque;
 import java.util.Arrays;
@@ -9,8 +7,9 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class FileReaderStub implements FileReader {
+import caay2000.github.com.searcher.io.FileReader;
 
+public class FileReaderStub implements FileReader {
 
     private final Set<Path> files;
     private final Queue<Stream<String>> lines;

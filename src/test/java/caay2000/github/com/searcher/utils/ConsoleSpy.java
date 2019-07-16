@@ -1,9 +1,13 @@
 package caay2000.github.com.searcher.utils;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 import caay2000.github.com.searcher.io.Console;
 import caay2000.github.com.searcher.io.ConsoleOperation;
-
-import java.util.*;
 
 public class ConsoleSpy implements Console {
 
@@ -28,5 +32,4 @@ public class ConsoleSpy implements Console {
     public List<String> getWrites() {
         return this.writes;
     }
-
 }

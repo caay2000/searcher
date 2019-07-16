@@ -43,8 +43,8 @@ public class SearcherApplication {
 
     private void printResult(SearchResult searchResult) {
         searchResult.getResult().stream()
-                .limit(10)
-                .forEachOrdered(e -> console.write(String.format("%s : %d%%", e.getFilename(), e.getValue())));
+                    .limit(10)
+                    .forEachOrdered(e -> console.write(String.format("%s : %d%%", e.getFilename(), e.getValue())));
     }
 
     private void validateInput(String[] input) {
@@ -61,7 +61,5 @@ public class SearcherApplication {
         console.write("");
         console.write("Albert Casanovas(caay2000@gmail.com)");
     }
-
-
 }
 

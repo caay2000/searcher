@@ -1,10 +1,10 @@
 package caay2000.github.com.searcher.model;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 public class SearchResultTest {
 
@@ -41,5 +41,4 @@ public class SearchResultTest {
         list.addAll(testee.getResult());
         return list;
     }
-
 }

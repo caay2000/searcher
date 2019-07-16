@@ -1,10 +1,9 @@
 package caay2000.github.com.searcher.io;
 
-
-import caay2000.github.com.searcher.model.ApplicationException;
-
 import java.io.IOException;
 import java.io.OutputStream;
+
+import caay2000.github.com.searcher.model.ApplicationException;
 
 public class SystemConsole implements Console {
 
@@ -19,7 +18,8 @@ public class SystemConsole implements Console {
         try {
             outputStream.write(string.getBytes());
             outputStream.write(System.getProperty("line.separator").getBytes());
-        } catch (IOException ioe) {
+        }
+        catch (IOException ioe) {
             throw new ApplicationException("error writing to system console");
         }
     }
@@ -28,5 +28,4 @@ public class SystemConsole implements Console {
     public ConsoleOperation read() {
         return ConsoleOperation.aSearchOperation("value");
     }
-
 }

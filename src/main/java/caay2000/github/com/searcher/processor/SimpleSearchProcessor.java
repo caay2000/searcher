@@ -1,10 +1,10 @@
 package caay2000.github.com.searcher.processor;
 
+import java.util.Set;
+
 import caay2000.github.com.searcher.model.Document;
 import caay2000.github.com.searcher.model.DocumentLibrary;
 import caay2000.github.com.searcher.model.SearchResult;
-
-import java.util.Set;
 
 public class SimpleSearchProcessor implements SearchProcessor {
 
@@ -21,8 +21,8 @@ public class SimpleSearchProcessor implements SearchProcessor {
         for (Document document : library.getDocuments()) {
 
             long count = search.stream()
-                    .filter(document.getWords()::contains)
-                    .count();
+                               .filter(document.getWords()::contains)
+                               .count();
 
             searchResult.addResult(document.getFilename(), ratingCalculator.getRating(search.size(), count));
         }

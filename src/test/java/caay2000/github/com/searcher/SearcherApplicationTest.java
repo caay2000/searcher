@@ -1,5 +1,7 @@
 package caay2000.github.com.searcher;
 
+import java.util.HashSet;
+
 import caay2000.github.com.searcher.io.ConsoleOperation;
 import caay2000.github.com.searcher.model.ApplicationException;
 import caay2000.github.com.searcher.utils.ConsoleSpy;
@@ -8,8 +10,6 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import java.util.HashSet;
 
 public class SearcherApplicationTest {
 
@@ -38,7 +38,8 @@ public class SearcherApplicationTest {
 
         try {
             testee.execute(new String[]{});
-        } catch (ApplicationException e) {
+        }
+        catch (ApplicationException e) {
             Assert.assertEquals(5, consoleSpy.getWrites().size());
             Assert.assertEquals("SEARCHER for Adevinta", consoleSpy.getWrites().get(0));
             Assert.assertEquals("how to run the program:", consoleSpy.getWrites().get(1));
@@ -58,17 +59,14 @@ public class SearcherApplicationTest {
         testee.execute(new String[]{"example"});
     }
 
-
     @Test
     public void searchAndQuit() {
 
         ConsoleSpy consoleSpy = new ConsoleSpy(ConsoleOperation.aSearchOperation("search"),
-                ConsoleOperation.aQuitOperation());
+                                               ConsoleOperation.aQuitOperation());
         FileReaderStub fileReaderStub = new FileReaderStub(new HashSet<>());
         SearcherApplication testee = new SearcherApplication(fileReaderStub, consoleSpy);
 
         testee.execute(new String[]{"example"});
     }
-
-
 }

@@ -54,10 +54,11 @@ public class SearcherApplicationIntegrationTest {
 
         try {
 
-        return this.getClass().getClassLoader().getResource(file).toURI().toString();
+            return this.getClass().getClassLoader().getResource(file).getFile();
             //return "D:/kiwibcn/workspace/searcher/target/test-classes/" + file;
             //return "C:/Users/acasanovas/workspace/kiwibcn/searcher/target/test-classes/" + file;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

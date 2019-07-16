@@ -1,13 +1,13 @@
 package caay2000.github.com.searcher.processor;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 import caay2000.github.com.searcher.model.Document;
 import caay2000.github.com.searcher.model.DocumentLibrary;
 import caay2000.github.com.searcher.model.SearchResult;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 public class SimpleSearchProcessorTest {
 
@@ -34,7 +34,6 @@ public class SimpleSearchProcessorTest {
         Assert.assertEquals(1, result.size());
         Assert.assertEquals(new Integer(0), getResultItemByFilename(result, "filename").getValue());
     }
-
 
     @Test
     public void oneWordLibrary() {
@@ -81,8 +80,7 @@ public class SimpleSearchProcessorTest {
 
     private SearchResult.ResultItem getResultItemByFilename(SearchResult result, String filename) {
         return result.getResult().stream()
-                .filter(e -> e.getFilename().equals(filename))
-                .findFirst().orElseThrow(() -> new RuntimeException("not found"));
+                     .filter(e -> e.getFilename().equals(filename))
+                     .findFirst().orElseThrow(() -> new RuntimeException("not found"));
     }
-
 }

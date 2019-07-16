@@ -25,6 +25,7 @@ public class SearchResult {
     }
 
     public class ResultItem implements Comparable<ResultItem> {
+
         private final String filename;
         private final Integer value;
 
@@ -51,6 +52,11 @@ public class SearchResult {
         }
 
         @Override
+        public int hashCode() {
+            return Objects.hash(filename, value);
+        }
+
+        @Override
         public boolean equals(Object o) {
             if (this == o) {
                 return true;
@@ -60,12 +66,7 @@ public class SearchResult {
             }
             ResultItem that = (ResultItem) o;
             return Objects.equals(filename, that.filename) &&
-                    Objects.equals(value, that.value);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(filename, value);
+                   Objects.equals(value, that.value);
         }
     }
 }

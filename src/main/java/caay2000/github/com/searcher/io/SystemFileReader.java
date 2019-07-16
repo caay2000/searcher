@@ -1,7 +1,5 @@
 package caay2000.github.com.searcher.io;
 
-import caay2000.github.com.searcher.model.ApplicationException;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +8,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import caay2000.github.com.searcher.model.ApplicationException;
+
 public class SystemFileReader implements FileReader {
 
     @Override
@@ -17,10 +17,11 @@ public class SystemFileReader implements FileReader {
 
         try {
             return Files.list(Paths.get(directory))
-                    .filter(file -> file.toFile().isFile())
-                    .filter(Files::isReadable)
-                    .collect(Collectors.toSet());
-        } catch (IOException e) {
+                        .filter(file -> file.toFile().isFile())
+                        .filter(Files::isReadable)
+                        .collect(Collectors.toSet());
+        }
+        catch (IOException e) {
             throw new ApplicationException(String.format("error reading file %s", directory));
         }
     }
@@ -30,10 +31,9 @@ public class SystemFileReader implements FileReader {
 
         try {
             return Files.lines(path);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new ApplicationException(String.format("error reading file %s", path.getFileName().toString()));
         }
-
     }
-
 }

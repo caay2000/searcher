@@ -1,16 +1,16 @@
 package caay2000.github.com.searcher.model;
 
-import caay2000.github.com.searcher.io.FileReader;
-import caay2000.github.com.searcher.utils.FileReaderStub;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.File;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
+
+import caay2000.github.com.searcher.io.FileReader;
+import caay2000.github.com.searcher.utils.FileReaderStub;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class DocumentLibraryFactoryTest {
 
@@ -29,7 +29,6 @@ public class DocumentLibraryFactoryTest {
 
         Assert.assertEquals(0, library.size());
     }
-
 
     @Test
     public void fileWithoutWords() {
@@ -54,7 +53,6 @@ public class DocumentLibraryFactoryTest {
 
         Assert.assertEquals(1, countWords(library, filename));
     }
-
 
     @Test
     public void fileWithRepeatedWord() {
@@ -94,7 +92,6 @@ public class DocumentLibraryFactoryTest {
         Assert.assertEquals(2, countWords(library, anotherFilename));
     }
 
-
     @Test
     public void fileWithMultipleWordsAndCommaOrDot() {
 
@@ -125,8 +122,8 @@ public class DocumentLibraryFactoryTest {
 
     private long countWords(DocumentLibrary library, String anotherFilename) {
         return library.getDocuments().stream()
-                .filter(e -> e.getFilename().equals(anotherFilename))
-                .flatMap(e -> e.getWords().stream())
-                .count();
+                      .filter(e -> e.getFilename().equals(anotherFilename))
+                      .flatMap(e -> e.getWords().stream())
+                      .count();
     }
 }

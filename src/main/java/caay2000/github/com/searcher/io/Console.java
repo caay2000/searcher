@@ -5,5 +5,4 @@ public interface Console {
     void write(String string);
 
     ConsoleOperation read();
-
 }
