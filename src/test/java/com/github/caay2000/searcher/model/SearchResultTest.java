@@ -20,19 +20,29 @@ public class SearchResultTest {
     }
 
     @Test
+    public void valueWithZeroIsNotAdded() {
+
+        SearchResult testee = new SearchResult();
+
+        testee.addResult("0", 0);
+
+        List<SearchResult.ResultItem> list = getResultsAsSortedList(testee);
+
+        Assert.assertEquals(0, list.size());
+    }
+
+    @Test
     public void getResultIsOrdered() {
 
         SearchResult testee = new SearchResult();
 
         testee.addResult("100", 100);
         testee.addResult("50", 50);
-        testee.addResult("0", 0);
 
         List<SearchResult.ResultItem> list = getResultsAsSortedList(testee);
 
         Assert.assertEquals("100", list.get(0).getFilename());
         Assert.assertEquals("50", list.get(1).getFilename());
-        Assert.assertEquals("0", list.get(2).getFilename());
     }
 
     private List<SearchResult.ResultItem> getResultsAsSortedList(SearchResult testee) {
