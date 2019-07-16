@@ -26,16 +26,17 @@ public class SearcherApplication {
 
         try {
             validateInput(input);
-            executeSearcher(input[0]);
+
+            DocumentLibrary documentLibrary = documentLibraryFactory.createNewLibrary(input[0]);
+            console.writeln(String.format("%d files read in directory %s", documentLibrary.size(), input[0]));
+
+            executeSearcher(documentLibrary);
         } catch (ApplicationException e) {
             console.writeln(String.format("ERROR: %s", e.getMessage()));
         }
     }
 
-    private void executeSearcher(String path1) {
-        String path = path1;
-        DocumentLibrary documentLibrary = documentLibraryFactory.createNewLibrary(path);
-        console.writeln(String.format("%d files read in directory %s", documentLibrary.size(), path));
+    private void executeSearcher(DocumentLibrary documentLibrary) {
 
         while (true) {
             console.write("search> ");
@@ -45,7 +46,7 @@ public class SearcherApplication {
             }
 
             SearchResult searchResult = searchProcessor.search(operation.getValue(), documentLibrary);
-            this.printResult(searchResult);
+            printResult(searchResult);
         }
     }
 
@@ -69,7 +70,7 @@ public class SearcherApplication {
     private void printHelp() {
         console.writeln("SEARCHER for Adevinta");
         console.writeln("how to run the program:");
-        console.writeln("java -cp searcher.jar Searcher [path_to_your_directory]");
+        console.writeln("java -jar searcher.jar [path_to_your_directory]");
         console.writeln("Albert Casanovas(caay2000@gmail.com)");
     }
 }

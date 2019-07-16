@@ -1,66 +1,21 @@
-## Java/Scala Coding Exercise - 2–3 hours
+# How to compile the project
+You need maven to compile the project.
 
-The exercise is to write a command line driven text search engine, with usage being:
-```
-java -jar jarName mainClassFile directoryContainingTextFiles
-```
-This should read all the text files in the given directory, building an in memory representation of the
-files and their contents, and then give a command prompt at which interactive searches can be
-performed.
+From the root directory, simply run ```mvn clean package``` and it will compile the project and create a jar to be executed.
 
+# How to run the program
+The jar file is located inside target directory. You can run the program using ```java -jar searcher.jar [path_to_your_directory]```
 
-An example session might look like:
-```
-$ java -jar SimpleSearch.jar Searcher /foo/bar
-14 files read in directory /foo/bar
-search> to be or not to be file1.txt : 100%
-file2.txt : 90%
-search>
-search> cats
-no matches found search> :quit
-$
-```
+# Considerations and assumptions
+The only external dependency I used is junit. I also used an intellij plugin for running pitest and check mutation coverage.
 
-The search should take the words given on the prompt and return a list of the top 10 (maximum)
-matching filenames in rank order, giving the rank score against each match.
+The core code has been created following the Classist/Detroit TDD approach, testing SUT behaviour and mocking external dependencies manually without any library (creating my own stubs and spies).
 
-Note:​ ​We would like to see a working console application, please focus your attention on the search
-algorithm and the basic console functionality (you can assume that the input strings are sane).
-#### Ranking
-- The rank score must be 100% if a file contains all the words
-- It must be 0% if it contains none of the words
-- It should be between 0 and 100 if it contains only some of the words but the exact ranking
-formula is up to you to choose and implement
-#### Things to consider in your implementation (please read carefully)
-- We are expecting ‘production like’ code, i.e. fully tested and well structured code, but not
-necessarily feature complete
-- You should be spending 2-3 hours on the task, so basic functionality is better than a complex
-scoring algorithm and no console application.
-- External libraries are forbidden, other than test/mocking frameworks
-- Ranking score design — start​ ​with​ ​something​ ​basic,​ then iterate as time allows
-- The in memory representation — searches should be relatively efficient
-- What constitutes a word?
-- What constitutes two words being equal (and matching)?
-#### Deliverables
-- Code to implement a version of the above
-- A README containing instructions so that we know how to build and run your code
+The core search application is really easy. Iterate over each file and check how many words has each file.
+Each file has been modeled as a Document, having a Set<String> of words, so searching words in a document is O(1).
+After each search, a result is created using a TreeSet, for ordering purposes (documents with more words should be shown first)
 
-Example​ ​starting​ ​point,​ ​this​ ​may​ ​not​ ​be​ ​as​ ​testable​ ​as​ ​you​ ​would​ ​want.
-```
-import​ ​java.io.File;
-import​ ​java.util.Scanner;
-public​ ​class​ ​Main {
-    public​ ​static​ ​void​ ​main(String[] args) {
-        if​ ​(args.length​ ​== 0) {
-        throw​ ​new​ ​IllegalArgumentException("No​ ​directory​ ​given​ ​to​ ​index."​);
-        }
-        final​ ​File indexableDirectory = new​ ​File(args[0]);
-        //TODO:​ ​Index​ ​all​ ​files​ ​in​ ​indexableDirectory
-        Scanner keyboard = new​ ​Scanner(System.in​);
-        while​ ​(true​) { System.out​.print("search>​ ​"​);
-        final​ ​String line = keyboard.nextLine();
-        //TODO:​ ​Search​ ​indexed​ ​files​ ​for​ ​words​ ​in​ ​line
-        }
-    }
-}
-```
+The whole practice took me almost 4 hours, as I had some problems with Path/Files, mainly because of Windows way of handling Paths with Java, and also because i'm not used to work with Files directly, so some investigation was needed while doing some integration tests.
+
+# What can be improved
+...

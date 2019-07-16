@@ -36,7 +36,7 @@ public class SearcherApplicationTest {
         testee.execute(new String[]{});
         Assert.assertTrue(consoleSpy.getWrites().contains("SEARCHER for Adevinta"));
         Assert.assertTrue(consoleSpy.getWrites().contains("how to run the program:"));
-        Assert.assertTrue(consoleSpy.getWrites().contains("java -cp searcher.jar Searcher [path_to_your_directory]"));
+        Assert.assertTrue(consoleSpy.getWrites().contains("java -jar searcher.jar [path_to_your_directory]"));
         Assert.assertTrue(consoleSpy.getWrites().contains("Albert Casanovas(caay2000@gmail.com)"));
     }
 

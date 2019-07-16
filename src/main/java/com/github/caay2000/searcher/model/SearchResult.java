@@ -47,7 +47,7 @@ public class SearchResult {
         public int compareTo(ResultItem o) {
             int compareTo = this.value.compareTo(o.getValue());
             if (compareTo == 0) {
-                compareTo = o.filename.compareTo(this.filename);
+                compareTo = o.getFilename().compareTo(this.filename);
             }
             return compareTo;
         }
