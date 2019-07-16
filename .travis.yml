@@ -1,0 +1,9 @@
+addons:
+  sonarcloud:
+    organization: "caay2000-github"
+    token:
+      secure: "f283ecaca00e0cec51dccfc294e9d902d61cdfa8" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=caay2000_searcher
