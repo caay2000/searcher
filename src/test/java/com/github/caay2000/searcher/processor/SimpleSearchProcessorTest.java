@@ -31,8 +31,7 @@ public class SimpleSearchProcessorTest {
 
         SearchResult result = testee.search(new HashSet<>(Arrays.asList("wrong")), library);
 
-        Assert.assertEquals(1, result.size());
-        Assert.assertEquals(new Integer(0), getResultItemByFilename(result, "filename").getValue());
+        Assert.assertEquals(0, result.size());
     }
 
     @Test
@@ -72,10 +71,9 @@ public class SimpleSearchProcessorTest {
 
         SearchResult result = testee.search(new HashSet<>(Arrays.asList("something", "another")), library);
 
-        Assert.assertEquals(3, result.size());
+        Assert.assertEquals(2, result.size());
         Assert.assertEquals(new Integer(50), getResultItemByFilename(result, "something").getValue());
         Assert.assertEquals(new Integer(100), getResultItemByFilename(result, "another").getValue());
-        Assert.assertEquals(new Integer(0), getResultItemByFilename(result, "nothing").getValue());
     }
 
     private SearchResult.ResultItem getResultItemByFilename(SearchResult result, String filename) {
