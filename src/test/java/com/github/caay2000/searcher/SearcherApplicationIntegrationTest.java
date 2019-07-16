@@ -63,6 +63,9 @@ public class SearcherApplicationIntegrationTest {
     }
 
     private String solveWindowsIssue(String path) {
-        return path.replaceFirst("/", "");
+        if (path.contains(":")) {
+            return path.replaceFirst("/", "");
+        }
+        return path;
     }
 }
